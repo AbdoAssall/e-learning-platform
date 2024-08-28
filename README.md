@@ -1,3 +1,19 @@
+# E-Learning Platform
+Overview: An e-learning platform that offers online courses and learning materials. It can include features for both students and instructors, providing a comprehensive learning experience.
+
+Key Features:
+
+- User Authentication: Secure login and registration for students and instructors.
+- Course Management: Create, edit, and delete courses.
+- Interactive Content: Include video lectures, quizzes, assignments, and discussion forums.
+- Student Progress Tracking: Monitor student progress and performance.
+- Certificates: Issue certificates upon course completion.
+- Create a CV: Include your profile and download it as a PDF file to share with the community.
+- Exams: Add a new exam of interactive online test and show your exam details.
+- Responsive Design: Ensure the app works well on both desktop and mobile devices.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
