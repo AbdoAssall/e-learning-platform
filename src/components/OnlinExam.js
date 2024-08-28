@@ -5,17 +5,17 @@ import Navbar from '../components/Navbar';
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiAlarmOn } from "react-icons/ci";
 import { MdAccessTime } from "react-icons/md";
-import CodeImage from '../assets/images/code.png'
+import CodeImage from '../assets/images/code.webp'
 
 const OnlineExam = () => {
-    const [selectedOption, setSelectedOption] = useState('');
+    // const [selectedOption, setSelectedOption] = useState('');
 
-    const optionChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
-    const submitExam = () => {
-        console.log('Selected Option', selectedOption)
-    }
+    // const optionChange = (event) => {
+    //     setSelectedOption(event.target.value);
+    // };
+    // const submitExam = () => {
+    //     console.log('Selected Option', selectedOption)
+    // }
 
     return (
         <div className="main-bg">
@@ -142,7 +142,7 @@ const OnlineExam = () => {
                     </div>
                     <div className='exam-from-btns mb-3'>
                         <button className='btn exam-btn text-uppercase'>Cancel</button>
-                        <button onClick={submitExam} className='btn exam-btn text-uppercase'>Submit</button>
+                        <button  className='btn exam-btn text-uppercase'>Submit</button>
                     </div>
                 </div>
             </div >

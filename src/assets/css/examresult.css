@@ -99,5 +99,6 @@
         padding-top: 12px;
         padding-bottom: 12px;
         margin-top: 12px;
+        background-color: var(--black-color);
     }
 }

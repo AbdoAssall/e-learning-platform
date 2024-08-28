@@ -20,7 +20,7 @@
 }
 select, input {
     background-color: rgb(60 60 60 / 70%) !important;
-    opacity: 0.8;
+    /* opacity: 0.8; */
     color: #fff !important;
     border: none !important;
     box-shadow: none !important;

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useCallback } from 'react';
 import '../assets/css/addexam.css'
 import Navbar from '../components/Navbar';
 import { IoCalendarOutline } from "react-icons/io5";
@@ -12,14 +12,14 @@ import { IoAddCircleOutline } from "react-icons/io5";
 
 const AddExam = () => {
     const [inputValue, setInputValue] = useState('');
-
-    const getImage = (e) => {
+    const getImage = useCallback ((e) => {
         const file = e.target.files[0]
         if (file) {
             const fileNmae = file.name;
             setInputValue(fileNmae)
         }
-    }
+    }, [])
+
     return (
         <div className="main-bg">
             <div className='container'>
@@ -42,7 +42,7 @@ const AddExam = () => {
                                     <div className="card-body p-0 d-flex flex-wrap">
                                         <div className="exam-row">
                                             <label for="examName" className="form-label text-capitalize">Course Name</label>
-                                            <select class="form-select">
+                                            <select className="form-select">
                                                 <option selected hidden></option>
                                                 <option value="1">Front-end</option>
                                                 <option value="2">Back-end</option>
@@ -52,26 +52,26 @@ const AddExam = () => {
                                         </div>
                                         <div className="exam-row level">
                                             <label for="examName" className="form-label text-capitalize">Level</label>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row full-mark">
                                             <label for="examName" className="form-label text-capitalize">Full Mark</label>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row mb-0 date position-relative">
                                             <label for="examName" className="form-label text-capitalize">Date</label>
-                                            <input type='text' class="form-control" />
-                                            <IoCalendarOutline className='icon-form' />
+                                            <input type='text' className="form-control"/>
+                                            <IoCalendarOutline className='icon-form'  />
                                         </div>
                                         <div className="exam-row mb-0 time position-relative">
                                             <label for="examName" className="form-label text-capitalize">Time</label>
-                                            <input type='text' class="form-control" />
-                                            <MdAccessTime className='icon-form' />
+                                            <input type='text' className="form-control"/>
+                                            <MdAccessTime className='icon-form'  />
                                         </div>
                                         <div className="exam-row mb-0 duration position-relative">
                                             <label for="examName" className="form-label text-capitalize">Duration</label>
-                                            <input type='text' class="form-control" />
-                                            <CiAlarmOn className='icon-form' />
+                                            <input type='text' className="form-control"/>
+                                            <CiAlarmOn className='icon-form'  />
                                         </div>
                                     </div>
                                 </div>
@@ -91,15 +91,15 @@ const AddExam = () => {
                                                 </button>
                                                 <label for="examName" className="form-label text-capitalize">Question 1</label>
                                             </div>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row q-mark">
                                             <label for="examName" className="form-label text-capitalize">Mark</label>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row question-type">
                                             <label for="questionType" className="form-label text-capitalize">Question Type</label>
-                                            <select id="questionType" class="form-select">
+                                            <select id="questionType" className="form-select">
                                                 <option value="Multiple choices">Multiple choices</option>
                                                 <option value="True/False">True/False</option>
                                                 <option value="Fill in the blanks">Fill in the blanks</option>
@@ -111,9 +111,9 @@ const AddExam = () => {
                                             <label className="form-label text-capitalize d-block">Image Upload</label>
                                             <label for="imageUpload" className='label-upload'>
                                                 <RiUploadCloud2Line className='icon' />
-                                                <input type='text' class="form-control" value={inputValue} readOnly />
+                                                <input type='text' className="form-control" value={inputValue} readOnly />
                                             </label>
-                                            <input onChange={getImage} type="file" id="imageUpload" class="form-control" accept="image/*" />
+                                            <input onChange={getImage} type="file" id="imageUpload" className="form-control" accept="image/*" />
                                         </div>
                                         <div className="exam-row option1">
                                             <div className='for-mobile'>
@@ -123,10 +123,10 @@ const AddExam = () => {
                                                 <label className="form-label text-capitalize">Option</label>
                                             </div>
                                             <div className='d-flex align-items-center'>
-                                                <label class="option-button" for='correct'>
-                                                    <button class="correct-btn btn"><span><IoCheckmarkCircleOutline className='icon' /></span> Correct answer</button>
-                                                    <input type="text" id='correct' class="option-input form-control" />
-                                                    <textarea class="option-area form-control d-none"></textarea>
+                                                <label className="option-button" for='correct'>
+                                                    <button className="correct-btn btn"><span><IoCheckmarkCircleOutline className='icon' /></span> Correct answer</button>
+                                                    <input type="text" id='correct' className="option-input form-control" />
+                                                    <textarea className="option-area form-control d-none"></textarea>
                                                 </label>
                                                 <button className='remove-icon'>
                                                     <TfiTrash className='icon' title='Delete option' />
@@ -146,10 +146,10 @@ const AddExam = () => {
                                                 <label className="form-label text-capitalize">Option</label>
                                             </div>
                                             <div className='d-flex align-items-center'>
-                                                <label class="option-button" for='wrong'>
-                                                    <button class="wrong-btn btn"><span><FaRegTimesCircle className='icon' /></span> Wrong answer</button>
-                                                    <input type="text" id='wrong' class="option-input form-control" />
-                                                    <textarea class="option-area form-control d-none"></textarea>
+                                                <label className="option-button" for='wrong'>
+                                                    <button className="wrong-btn btn"><span><FaRegTimesCircle className='icon' /></span> Wrong answer</button>
+                                                    <input type="text" id='wrong' className="option-input form-control" />
+                                                    <textarea className="option-area form-control d-none"></textarea>
                                                 </label>
                                                 <button className='remove-icon'>
                                                     <TfiTrash className='icon' title='Delete option' />
@@ -177,15 +177,15 @@ const AddExam = () => {
                                                 </button>
                                                 <label for="examName" className="form-label text-capitalize">Question 2</label>
                                             </div>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row q-mark">
                                             <label for="examName" className="form-label text-capitalize">Mark</label>
-                                            <input type='text' class="form-control" />
+                                            <input type='text' className="form-control" />
                                         </div>
                                         <div className="exam-row question-type">
                                             <label for="questionType" className="form-label text-capitalize">Question Type</label>
-                                            <select id="questionType" class="form-select">
+                                            <select id="questionType" className="form-select">
                                                 <option value="Short answer">Short answer</option>
                                                 <option value="Multiple choices">Multiple choices</option>
                                                 <option value="True/False">True/False</option>
@@ -197,15 +197,15 @@ const AddExam = () => {
                                             <label className="form-label text-capitalize d-block">Image Upload</label>
                                             <label for="imageUpload" className='label-upload'>
                                                 <RiUploadCloud2Line className='icon' />
-                                                <input type='text' class="form-control" value={inputValue} readOnly />
+                                                <input type='text' className="form-control" value={inputValue} readOnly />
                                             </label>
-                                            <input onChange={getImage} type="file" id="imageUpload" class="form-control" accept="image/*" />
+                                            <input onChange={getImage} type="file" id="imageUpload" className="form-control" accept="image/*" />
                                         </div>
                                         <div className="exam-row answer">
                                             <label className="form-label text-capitalize">Answer</label>
-                                            <label class="option-button">
-                                                <button class="correct-btn btn"><span><IoCheckmarkCircleOutline className='icon' /></span> Correct answer</button>
-                                                <textarea class="answer-input form-control"></textarea>
+                                            <label className="option-button">
+                                                <button className="correct-btn btn"><span><IoCheckmarkCircleOutline className='icon' /></span> Correct answer</button>
+                                                <textarea className="answer-input form-control"></textarea>
                                             </label>
                                         </div>
                                     </div>

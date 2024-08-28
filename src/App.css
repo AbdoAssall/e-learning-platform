@@ -20,25 +20,8 @@
 }
 .logo img {
     height: 50px;
+    width: auto;
 }
-.bg-nav {
-   background-image: url('./assets/images/secondary_background.jpg');
-   background-size: cover;
-   background-repeat: no-repeat;
-   /* background-position: top; */
-   height: 100vh;
-   width: 100%;
-   position: relative;
- }
- .bg-nav::before {
-   content: "";
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.8);
- }
 /* ///////////////////////////////////// */
 .exam-section {
     position: relative;
