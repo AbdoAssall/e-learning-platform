@@ -1,0 +1,124 @@
+#exam-section {
+    gap: 0;
+  }
+.online-exam .title-info p {
+    margin: 0;
+    font-size: 14px;
+    text-transform: capitalize;
+} 
+.online-exam .title-info p span {
+    color: var(--primary-color);
+    padding-right: 6px;
+    font-weight: 600;
+} 
+.exam-info-time {
+    display: flex;
+}
+.exam-info-time .exam-item.card {
+   margin-bottom: 15px;
+}
+.exam-info-time .exam-time .icon {
+    margin-right: 5px;
+    font-size: 18px;
+    vertical-align:text-top ;
+}
+.exam-info-time .exam-time p:last-child {
+    padding-left: 27px;
+}
+.exam-timer .progress {
+    height: 7px;
+}
+.progress-bar {
+    background-color: var(--primary-color) !important;
+}
+/* Quettions */
+.exam-row {
+    margin: 0;
+}
+.exam-row p {
+    font-size: 15px;
+}
+.exam-row h5 {
+    margin-bottom: 40px;
+}
+.exam-from .exam-item.card {
+    padding-bottom: 20px;
+}
+.options {
+    position: relative;
+    overflow: hidden;
+}
+.options .option input {
+    display: none;
+}
+.options .option {
+    width: 60%;
+    display: block;
+    background-color: rgb(60 60 60 / 70%);;
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1;
+}
+.options .option:has(input:checked) {
+    background-color: var(--primary-color);
+    color: #fff;
+    display: inline-block;
+}
+.img-code {
+    margin-bottom: 30px;
+}
+.img-code img {
+    width: 100%;
+    border-radius: 7px;
+}
+/*    Media Query    */
+@media (max-width: 992px) {
+    .online-exam {
+        flex-direction: column;
+    }
+    .exam-info-time {
+        column-gap: 12px;
+        flex-wrap: wrap;
+    }
+    .exam-info-time .exam-item.card:nth-child(1) {
+       flex-basis: 100%;
+    }
+    .exam-info-time .exam-item.card:nth-child(2) {
+       flex-basis: 48%;
+    }
+    .exam-info-time .exam-item.card:nth-child(3) {
+       flex-basis: 49%;
+    }
+    .options .option {
+        width: 100%;
+    }
+    .exam-from {
+        margin-bottom: 0 !important;
+    }
+    .title-info {
+        margin-bottom: 20px;
+    }
+    .online-exam ~ .exam-from-btns {
+        display: flex !important;
+        gap: 15px;
+    }
+    .exam-from-btns .exam-btn {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .online-exam ~ .exam-from-btns{
+        display: grid !important;
+        justify-content: normal;
+        gap: 15px;
+    }
+}
+@media (max-width: 423px) {
+    .exam-info-time .exam-item.card:nth-child(3) {
+        flex-basis: 48%;
+    }
+}

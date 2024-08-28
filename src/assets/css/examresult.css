@@ -1,0 +1,103 @@
+.progress-bar {
+    width: 100% ;
+}
+/* progress circle  */
+.progress-circle {
+    position: relative;
+    transition: all 0.5s;
+}
+.rs-progress-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.rs-progress-circle-info {
+    position: absolute;
+}
+.circle-outer {
+    position: relative;
+}
+.circle-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translate(15px, 15px);
+}
+.circle-inner .rs-progress-circle-info {
+    display: none;
+}
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(96%, -50%);
+  font-weight: bold;
+  text-align: center;
+}
+/* Resuly iformation */
+.result .exam-btn {
+    width: 190px;
+}
+.info-results .info-answered {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.info-answered-card {
+    background-color: rgb(0 0 0 / 40%);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 25px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 190px;
+    text-align: center;
+}
+.info-answered-card p {
+    margin: 0;
+}
+/*            Media Query        */
+@media (max-width: 992px) {
+    .exam-from-btns {
+        justify-content: flex-end;
+        gap: 0
+    }
+}
+@media (max-width: 768px) {
+    .resul-card {
+        flex-direction: column;
+    }
+    .exam-from-btns {
+        justify-content: normal;
+        margin-top: 30px;
+    }
+    .result .exam-btn {
+        width: 100%;
+    }
+    .progress-circle {
+        display: flex;
+        justify-content: center;
+    }
+    .circle-inner {
+        left: 50%;
+        transform: translate(-50%, 15px);
+    }
+    .circle-text {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .info-results .info-answered {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .info-answered-card {
+        align-self: center;
+        width: 100%;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        margin-top: 12px;
+    }
+}

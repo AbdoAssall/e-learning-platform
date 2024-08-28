@@ -1,0 +1,329 @@
+#exam-section {
+    gap: 0;
+  }
+.exam-item.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.question-container .exam-item.card {
+    width: 900px;
+}
+.section-title {
+    margin-bottom: 0;
+}
+.exam-add .exam-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.exam-add .exam-btn:hover {
+    background-color: var(--btn-hover);
+    border-color: var(--btn-hover);
+}
+select, input {
+    background-color: rgb(60 60 60 / 70%) !important;
+    opacity: 0.8;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-size: 14px;
+    transition: border .7s;
+}
+select:focus, input:focus, .form-select:focus, .form-control:focus {
+    transition: border .7s;
+    border: 1px solid var(--primary-color) !important;
+}
+label {
+    font-size: 14px;
+}
+.form-select {
+   background-image: url('../images/arrow-down.png') !important;
+   background-size: auto;
+   font-size: 14px;
+}
+.exam-row:first-child {
+    flex-basis: 40%;
+}
+.add-card-exam .exam-row {
+    margin-right: 18px;
+    margin-bottom: 15px;
+}
+.exam-row .icon-form {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    opacity: 0.4;
+}
+.exam-row.duration, .exam-row.date, .exam-row.time, .exam-row.full-mark, .exam-row.level {
+    flex-basis: 24%;
+}
+/* Question */
+.border-dashed {
+    border: 2px dashed var(--primary-color);
+}
+.question-container .question {
+    flex-basis: 70%;
+}
+.question-container .q-mark {
+    flex-basis: 28%;
+}
+.question-container .exam-row {
+    margin-right: 0;
+}
+.question-container .question-type {
+    flex-basis: 48%;
+}
+.question-container .option1, .option2 {
+    flex-basis: 70%;
+    margin-right: 10px;
+}
+.option2 {
+    flex-basis: 74%;
+}
+/* Add question */
+.add-question {
+    display: flex;
+    align-items: center;
+}
+.add-question span {
+    font-size: 14px;
+}
+/* textarea */
+.answer {
+    flex-basis: 100%;
+}
+.answer textarea {
+    background-color: var(--input-color) !important;
+    opacity: 0.8;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+    min-height: 144px;
+}
+.answer .option-button .correct-btn {
+    top: 10px;
+    transform: translateY(0);
+}
+/* image-upload */
+.image-upload {
+    flex-basis: 50%;
+}
+.image-upload > input {
+    display: none;
+    visibility: hidden;
+}
+.image-upload .icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 7px;
+    z-index: 1;
+}
+.label-upload {
+    position: relative;
+    width: 100%;
+}
+/* option Input */
+.option-button {
+    position: relative;
+    width: 100%;
+}
+.correct-btn, .wrong-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    padding: 4px 22px;
+    width: 142px;
+    color: white;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 13px;
+    text-wrap: nowrap;
+    transition: .6s;
+}
+.correct-btn {
+    background-color: rgba(52, 168, 83, 0.35);
+    border: 1px solid rgba(52, 168, 83, 0.35);
+}
+.wrong-btn {
+    background-color: rgba(243, 78, 78, 0.35);
+    border: 1px solid rgba(243, 78, 78, 0.35);
+}
+.correct-btn:hover {
+    background-color: rgba(52, 168, 83, 0.75);
+}
+
+.wrong-btn:hover {
+    background-color: rgba(243, 78, 78, 0.75);
+}
+.correct-btn .icon, .wrong-btn .icon {
+    font-size: 22px;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.correct-btn .icon {
+    color: var(--green-color);
+}
+.wrong-btn .icon {
+    color: var(--red-color);
+}
+.correct-btn span, .wrong-btn span {
+    padding-left: 13px;
+}
+.option1 .remove-icon, .option2 .remove-icon, .option2 .add-icon {
+    margin-left: 15px;
+}
+/* icons */
+.remove-icon, .add-icon {
+    background: transparent;
+    border: none;
+    display: block;
+}
+.remove-icon .icon, .add-icon .icon {
+    font-size: 20px;
+}
+.remove-icon-from, .add-question {
+    align-self: flex-start;
+    margin-top: 50px;
+}
+/* icons */
+.exam-from-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.exam-from-btns .exam-btn:last-child {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.exam-from-btns .exam-btn:first-child:hover {
+    background-color: var(--btn-hover);
+    border-color: var(--btn-hover);
+}
+.exam-from-btns .exam-btn:hover {
+    /* opacity: 0.85; */
+    background-color: var(--btn-hover);
+    border-color: var(--btn-hover);
+}
+/*            Media Query          */
+/* Screen Medium */
+@media (max-width: 992px) {
+    .question-container .exam-item.card{
+        width: 100% !important;
+    }
+    .exam-item .card-body {
+        flex-direction: column;
+    }
+    .exam-row {
+        flex-basis: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 18px !important;
+    }
+    .add-question {
+        align-self: flex-end;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .question-container {
+        flex-direction: column;
+    }
+    .remove-icon-from, .remove-icon {
+        display: none;
+    }
+    .option-button ~ .add-icon {
+        display: none;
+    }
+      /* For Mobile */
+      .for-mobile .remove-icon{
+        display: block !important;
+        order: 1;
+    }
+    .for-mobile {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .for-mobile .add-icon {
+        margin-left: 15px;
+        order: 1;
+    }
+    .option-icons {
+        display: flex !important;
+        order: 1;
+    }
+    #add-exam-btns.exam-from-btns {
+        display: flex !important;
+        gap: 15px;
+    }
+}
+/* Screen Small (mobile) */
+@media (max-width: 768px){
+    .add-question {
+        margin-bottom: 0;
+    }
+    .exam-add {
+        margin-bottom: 0 !important;
+    }
+    .exam-add button {
+        display: none !important;
+    }
+    .out-form, .remove-icon-from, .remove-icon, #correct, #wrong {
+        display: none;
+    }
+    .option-button ~ .add-icon {
+        display: none;
+    }
+    /* Exam Information (title) */
+    .inside-form {
+        display: block !important;
+        margin-bottom: 20px;
+    }
+    .exam-item.card {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .exam-from {
+        margin-bottom: 40px !important;
+    }
+    /* For Mobile */
+    .option-area {
+        display: block !important;
+        background-color: rgb(60 60 60 / 70%) !important;
+        opacity: 0.8;
+        color: #fff !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none;
+        min-height: 90px !important;
+    }
+    .correct-btn, .wrong-btn {
+        width: 98%;
+        transform: translateY(0);
+        margin: 0 5px;
+        right: 0;
+        top: 60%;
+    }
+    .answer .option-button .correct-btn {
+        top: 75%;
+    }
+    #add-exam-btns.exam-from-btns {
+        display: grid !important;
+        justify-content: normal;
+        gap: 15px;
+    }
+    #add-exam-btns .exam-btn {
+        width: 100%;
+    }
+    #add-exam-btns .exam-btn:last-child {
+        order: -1;
+    }
+}
