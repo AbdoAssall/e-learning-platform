@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ExamItem from "./ExamItem";
 
 const ExamList = ({exams, title}) => {
+    
     return (
         <div 
         className="exam-list"

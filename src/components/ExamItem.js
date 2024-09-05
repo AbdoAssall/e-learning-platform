@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiAlarmOn } from "react-icons/ci";
+import { ExamContext } from '../context/ExamProvider';
 
 
 const ExamItem = ({ exam }) => {
+    const { examData } = useContext(ExamContext)
+
     return (
         <div className="row">
             <div className="col-12">
@@ -15,7 +18,7 @@ const ExamItem = ({ exam }) => {
                                 <p><CiAlarmOn className="icon" /> {exam.time}</p>
                             </li>
                             <li className="exam-title">
-                                <p>{exam.title}</p>
+                                <p>{exam.courseName}</p>
                                 <p><span>Instructor: </span> {exam.instructor}</p>
                             </li>
                             <li className="exam-level">{exam.level}</li>

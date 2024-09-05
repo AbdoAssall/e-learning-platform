@@ -40,13 +40,13 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link link-light" to={"/add/exam"}>AddExam</Link>
+                  <Link className="nav-link link-light" to={"/addexam"}>AddExam</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link link-light" to={"/online/exam"}>OnlineExam</Link>
+                  <Link className="nav-link link-light" to={"/online-exam"}>OnlineExam</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link link-light" to={"/exam/result"}>ExamResult</Link>
+                  <Link className="nav-link link-light" to={"/exam-result"}>ExamResult</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link link-light" to={"/exams"}>Exams</Link>
