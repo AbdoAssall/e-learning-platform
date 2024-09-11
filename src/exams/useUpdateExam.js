@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createUpdateExam } from "../../services/apiExams";
+import { createUpdateExam } from "../services/apiExams";
 import { toast } from "react-hot-toast";
 
 export function useUpdateExam() {
@@ -14,5 +14,5 @@ export function useUpdateExam() {
     onError: (err) => toast.error(err.message),
   });
 
-  return { isEditing, updateExam };
+  return { updateExam, isEditing };
 }

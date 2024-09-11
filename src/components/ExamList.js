@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import ExamItem from "./ExamItem";
 
 const ExamList = ({exams, title}) => {

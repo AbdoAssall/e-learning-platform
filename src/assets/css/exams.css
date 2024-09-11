@@ -131,7 +131,7 @@
  .exam-btn {
     text-transform: uppercase;
     padding: 6px 22px;
-    width: 122px;
+    width: 136px;
     background-color: var(--secondary-color);
     color: white;
     border-radius: 5px;
@@ -149,6 +149,7 @@
     border-color: var(--secondary-color);
      opacity: 1;
  }
+
  #previous-exams .exam-info .exam-score {
     /* display: none; */
  }
@@ -216,6 +217,7 @@ nav .pagination {
 }
 nav .pagination .page-link {
     color: var(--primary-color);
+    box-shadow: none !important;
     transition: all 0.5s;
 }
 .pagination .page-link:hover {
@@ -238,6 +240,16 @@ nav .pagination .page-link {
 .page-item:first-child .page-link:hover .icon, .page-item:last-child .page-link:hover .icon {
     color: #fff;
 }
+.page-link.disabled, .disabled > .page-link {
+   background-color: transparent !important;
+   border-color: none !important;
+   opacity: 0.6 !important;
+ }
+ .page-link.active, .active > .page-link {
+   background-color: var(--primary-color) !important;
+   border-color: var(--primary-color) !important;
+   color: #fff !important;
+ }
 @media (max-width: 992px) {
     .pagination {
         justify-content: center !important;

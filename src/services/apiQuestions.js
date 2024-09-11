@@ -13,6 +13,22 @@ export async function getQuestions() {
 
   return { data, count };
 }
+
+export async function getQuestionsByExamId(examId) {
+  const { data, error, count } = await supabase
+    .from("questions")
+    .select("*")
+    .eq("exam_id", examId);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Questions could not be loaded");
+  }
+  console.log(data);
+
+  return { data, count };
+}
+
 export async function createUpdateQuestion(question, id) {
   const hasImagePath = question.image?.startsWith?.(supabaseUrl);
 
@@ -54,6 +70,26 @@ export async function createUpdateQuestion(question, id) {
     throw new Error(
       "question image could not be uploaded and the question was not created"
     );
+  }
+
+  return data;
+}
+
+export async function updateQuestionResult(questionId, resultData) {
+  const { data, error } = await supabase
+    .from("questions")
+    .update({
+      score: resultData.score,
+      answered: resultData.answered,
+      correct: resultData.correct ? 1 : 0,
+      timeSpent: resultData.timeSpent,
+    })
+    .eq("id", questionId)
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Question result could not be updated");
   }
 
   return data;

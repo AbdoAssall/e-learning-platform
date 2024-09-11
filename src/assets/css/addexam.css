@@ -77,17 +77,21 @@ label {
 }
 .question-container .option1, .option2 {
     margin-right: 10px;
+    width: 95%;
 }
 .question-container .multiple-choice {
     flex-basis: 70%;
 }
 .option2 {
-    width: 98%;
+    width: 102%;
 }
 /* Add question */
 .add-question {
     display: flex;
     align-items: center;
+    margin-top: 20px !important;
+    justify-content: space-between;
+    width: 130px;
 }
 .add-question span {
     font-size: 14px;
@@ -195,7 +199,7 @@ label {
 .remove-icon .icon, .add-icon .icon {
     font-size: 20px;
 }
-.remove-icon-from, .add-question {
+.remove-icon-from{
     align-self: flex-start;
     margin-top: 50px;
 }
@@ -316,13 +320,18 @@ label {
         margin-right: 0 !important;
         margin-bottom: 18px !important;
     }
-    .add-question {
+    .btn-form {
         align-self: flex-end;
-        margin-top: 10px;
+    }
+    .add-question {
+        margin-top: 10px !important;
         margin-bottom: 20px;
     }
     .question-container {
         flex-direction: column;
+    }
+    .question-container .option1, .option2 {
+        width: auto !important;
     }
     .remove-icon-from, .remove-icon {
         display: none;
@@ -364,7 +373,7 @@ label {
     .exam-add button {
         display: none !important;
     }
-    .out-form, .remove-icon-from, .remove-icon, #correct, #wrong {
+    .out-form, .remove-icon-from, .remove-icon, .correctOption, .falseOptions {
         display: none;
     }
     .option-button ~ .add-icon {

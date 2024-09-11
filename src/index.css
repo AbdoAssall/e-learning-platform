@@ -65,6 +65,29 @@ img {
 .icon {
   color: var(--primary-color);
 }
+.toast:not(.show) {
+  display: block !important;
+}
+.toast {
+  border-color: var(--primary-color) !important;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  transition: 0.5s;
+}
+.toast-header {
+  background-color: var(--black-color) !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  justify-content: flex-end !important;
+}
+.toast-body {
+  background-color: var(--black-color) !important;
+  text-align: center;
+  padding-top: 0px !important;
+  padding-bottom: 19px;
+}
 /* @media (min-width: 576px) {
   .container, .container-sm {
       max-width: 590px;

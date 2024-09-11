@@ -14,22 +14,23 @@ export async function getExams() {
   return { data, count };
 }
 
-export async function createUpdateExam(Exam, id) {
-  let query = supabase.from("Exams");
+export async function createUpdateExam(exam, id) {
+  let query = supabase.from("exams");
   // A) CREATE
-  if (!id) query = query.insert([{ ...Exam }]);
+  if (!id) query = query.insert([{ ...exam }]);
 
-  // // B) EDIT
-  if (id) query = query.update({ ...Exam }).eq("id", id);
+  //  B) EDIT
+  if (id) query = query.update({ ...exam }).eq("id", id);
 
-  const { data, error } = await query.select().single();
+  const { data, error } = await query.select();
+  // .single()
 
   if (error) {
     console.error(error);
     throw new Error("Exam could not be added to cart");
   }
 
-  return data;
+  return data[0];
 }
 
 export async function deleteExam(id) {
