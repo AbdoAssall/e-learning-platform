@@ -384,7 +384,7 @@ const AddExam = () => {
                     </div>
                     <div className='exam-from-btns mb-3' id='add-exam-btns'>
                         <button className='btn exam-btn text-uppercase'>Cancel</button>
-                        {window.innerWidth <= 768 ? (<button className='btn exam-btn text-uppercase'>Publish</button>) :
+                        {window.innerWidth <= 768 ? (<button onClick={handleSaveExam} className='btn exam-btn text-uppercase'>Publish</button>) :
                             (<button
                                 disabled={isCreating || isEditing}
                                 className='btn exam-btn text-uppercase'

@@ -17,7 +17,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
         image: null,
         imageName: '',
         correctOption: '',
-        falseOptions: [''],
+        falseOption: [''],
         answer: '',
         created_at: new Date().toISOString()
     }])
@@ -33,7 +33,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                 image: q.image || null,
                 imageName: q.imageName || '',
                 correctOption: q.correctOption || '',
-                falseOptions: q.falseOptions || [''],
+                falseOption: q.falseOptions || [''],
                 answer: q.answer || '',
                 created_at: q.created_at || new Date().toISOString()
             })));
@@ -46,7 +46,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                 image: null,
                 imageName: '',
                 correctOption: '',
-                falseOptions: [''],
+                falseOption: [''],
                 answer: '',
                 created_at: new Date().toISOString()
             }]);
@@ -198,24 +198,6 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
         });
     }, []);
 
-    // const handleAddQuestion = (e) => {
-    //     e.preventDefault();
-    //     const newQuestion = {
-    //         exam_id: examId,
-    //         id: '',
-    //         title: '',
-    //         mark: '',
-    //         questionType: '',
-    //         image: null,
-    //         imageName: '',
-    //         correctOption: '',
-    //         falseOption: [''],
-    //         answer: '',
-    //         paragraph: '',
-    //     };
-    //     setQuestionData([...questionData, newQuestion]);
-    // };
-
     const handleAddQuestion = useCallback((e) => {
         e.preventDefault();
         setQuestionData(prevData => [
@@ -228,7 +210,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                 image: null,
                 imageName: '',
                 correctOption: '',
-                falseOptions: [''],
+                falseOption: [''],
                 answer: '',
                 paragraph: '',
                 created_at: new Date().toISOString()
@@ -355,7 +337,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                                         </div>
                                     </div>
 
-                                    {question.falseOptions.map((option, optionIndex) => (
+                                    {question.falseOption.map((option, optionIndex) => (
                                         <div key={optionIndex} className="exam-row option2">
                                             <div className='for-mobile'>
                                                 <div className='option-icons d-none'>
@@ -369,16 +351,16 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                                                 <label className="form-label text-capitalize">Option {optionIndex + 1} </label>
                                             </div>
                                             <div className='d-flex align-items-center'>
-                                                <label htmlFor={`falseOptions${index}`} className="option-button">
+                                                <label htmlFor={`falseOption${index}`} className="option-button">
                                                     <div className="wrong-btn"><span><FaRegTimesCircle className='icon' /></span> Wrong answer</div>
                                                     <input
                                                         type="text"
-                                                        id={`falseOptions${index}`}
+                                                        id={`falseOption${index}`}
                                                         value={option}
                                                         onChange={(e) => handleIncorrectOptionChange(index, optionIndex, e.target.value)}
                                                         className="option-input form-control falseOptions" />
                                                     <textarea
-                                                        id={`falseOptions${index}`}
+                                                        id={`falseOption${index}`}
                                                         value={option}
                                                         onChange={(e) => handleIncorrectOptionChange(index, optionIndex, e.target.value)}
                                                         className="option-area form-control d-none"
@@ -465,15 +447,15 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
                                                 <div className="wrong-btn"><span><FaRegTimesCircle className='icon' /></span> Wrong answer</div>
                                                 <input
                                                     type="text"
-                                                    name={`falseOptions${index}`}
-                                                    value={question.falseOptions}
+                                                    name={`falseOption${index}`}
+                                                    value={question.falseOption}
                                                     onChange={(e) => handleIncorrectOptionChange(index, 0, e.target.value)}
                                                     id='wrong'
                                                     className="option-input form-control falseOptions" />
                                                 <textarea
                                                     id='wrong'
-                                                    name={`falseOptions${index}`}
-                                                    value={question.falseOptions}
+                                                    name={`falseOption${index}`}
+                                                    value={question.falseOption}
                                                     onChange={(e) => handleIncorrectOptionChange(index, 0, e.target.value)}
                                                     className="option-area form-control d-none"
                                                 ></textarea>
