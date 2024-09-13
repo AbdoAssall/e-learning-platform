@@ -22,14 +22,15 @@ export async function createUpdateExam(exam, id) {
   //  B) EDIT
   if (id) query = query.update({ ...exam }).eq("id", id);
 
-  const { data, error } = await query.select();
-  // .single()
+  const { data, error } = await query.select()
+  .single();
 
   if (error) {
     console.error(error);
     throw new Error("Exam could not be added to cart");
   }
 
+  // return data;
   return data[0];
 }
 

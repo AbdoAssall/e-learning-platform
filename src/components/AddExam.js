@@ -6,22 +6,20 @@ import ExamForm from './ExamForm';
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiAlarmOn } from "react-icons/ci";
 import { MdAccessTime } from "react-icons/md";
-import { db } from '../db';
 import { useCreateExam } from '../exams/useCreateExam';
 import { useUpdateExam } from '../exams/useUpdateExam';
 import { useExams } from '../exams/useExams';
 import { useCourses } from '../exams/useCourses';
-import { useQuestions } from '../exams/useQuestions';
+import { useQuestionsExamId } from '../exams/useQuestions';
 import { useCreateََQuestion } from '../exams/useCreateQuestion';
 import { useUpdateQuestion } from '../exams/useUpdateQuestion';
-import { useHref, useParams } from 'react-router-dom';
-import { createUpdateQuestion } from '../services/apiQuestions';
+import { deleteQuestion } from '../services/apiQuestions';
 
-
-const AddExam = ({ examId }) => {
+const AddExam = () => {
     // const { examId } = useParams();
     const { exams, isLoading, error } = useExams();
     const [examData, setExamData] = useState({
+        id: null,
         course_id: '',
         level: '',
         fullMark: '',
@@ -40,15 +38,22 @@ const AddExam = ({ examId }) => {
     const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
-        if (examId && exams) {
-            const exam = exams.find(e => e.id === parseInt(examId))
+        if (exams) {
+            const exam = exams.find(e => e.id === parseInt(examData.id))
             if (exam) {
                 setExamData(exam)
             }
         }
-    }, [examId, exams])
+    }, [exams])
 
-    const { questions } = useQuestions(examId);
+    const { questions } = useQuestionsExamId(examData.id);
+
+    useEffect(() => {
+        if (questions) {
+            // setQuestionData(prev => ({ ...prev, questions }));
+            setQuestionData(questions);
+        }
+    }, [questions]);
 
     const handleCourseChange = useCallback(async (e) => {
         const selectedCourseId = parseInt(e.target.value);
@@ -58,66 +63,32 @@ const AddExam = ({ examId }) => {
         if (existingExam) {
             setExamData(prev => ({
                 ...prev,
+                id: existingExam.id,
                 course_id: selectedCourseId,
-                // id: existingExam ? existingExam.id : '',
                 level: existingExam ? existingExam.level : '',
                 fullMark: existingExam ? existingExam.fullMark : '',
                 time: existingExam ? existingExam.time : '',
                 date: existingExam ? formatDate(existingExam.date) : '',
                 duration: existingExam ? existingExam.duration : '',
-                // durationTime: existingExam ? existingExam.durationTime : 'hours',
                 instructor: existingExam ? existingExam.instructor : '',
-                // questions: existingExam ? existingExam.questions : [],
+                // durationTime: existingExam ? existingExam.durationTime : 'hours',
+            }));
+        } else {
+            setExamData(prev => ({
+                ...prev,
+                id: null, // Reset id when selecting a new course
+                course_id: selectedCourseId,
+                level: '',
+                fullMark: '',
+                date: '',
+                time: '',
+                duration: '',
+                instructor: '',
             }));
         }
 
     }, [exams]);
 
-
-    useEffect(() => {
-        if (questions) {
-            // setQuestionData(prev => ({ ...prev, questions }));
-            setQuestionData(questions);
-        }
-    }, [questions]);
-
-    // useEffect(() => {
-    //     if (selectedCourseId) {
-    //         const existingExam = exams.find(exam => exam.course_id === selectedCourseId);
-
-    //         if (existingExam) {
-    //             setExamData({
-    //                 ...existingExam,
-    //                 date: existingExam.date ? formatDate(existingExam.date) : '',
-    //             });
-    //         } else {
-    //             setExamData({
-    //                 course_id: selectedCourseId,
-    //                 level: '',
-    //                 fullMark: '',
-    //                 date: '',
-    //                 time: '',
-    //                 duration: '',
-    //                 instructor: '',
-    //             });
-    //         }
-    //     }
-    // }, [selectedCourseId, exams]);
-
-    // useEffect(() => {
-    //     if (questions && questions.length > 0) {
-    //         const question = questions.find(e => e.exam_id === parseInt(examId))
-    //         setQuestionData(question);
-    //     } else {
-    //         setQuestionData([]);
-    //     }
-    // }, [examId, questions]);
-
-    // Handle course selection change
-    // const handleCourseChange = (e) => {
-    //     const selectedCourseId = parseInt(e.target.value);
-    //     setSelectedCourseId(selectedCourseId);
-    // };
 
     // Handle input changes
     const handleInputChange = useCallback((e) => {
@@ -214,34 +185,59 @@ const AddExam = ({ examId }) => {
             alert('Please select a course and fill in the required fields.');
             return;
         }
-        const { questions = [], ...finalData } = examData
 
         try {
             let savedExam;
-            const examToSave = { ...questions };
-            if (examId) {
-                // savedExam = await updateExam({ finalData, examId });
+            const { questions = [], ...examDataToSave } = examData
 
+            if (examData.id) {
+                savedExam = await updateExam({ newExamData: examDataToSave, id: examData.id });
 
-                await db.questions.update(examToSave, examId);
             } else {
-                // savedExam = await createExam(finalData);
-
-                await db.questions.put(examToSave);
+                savedExam = await createExam(examDataToSave);
             }
 
+            // if (!savedExam || !savedExam.id) {
+            //     throw new Error("Failed to save exam: No ID returned");
+            // }
+
+            // for (let question of questions) {
+            //     if (question.id) {
+            //         await updateQuestion({ ...question, exam_id: savedExam.id });  // Update existing question
+            //     } else {
+            //         await createQuestion({ ...question, exam_id: savedExam.id});  // Create new question
+            //     }
+            // }
+
+            // Update questions
+            const updatedQuestions = [];
             for (let question of questions) {
-                if (question.id) {
-                    await updateQuestion({ ...question, exam_id: savedExam.id });  // Update existing question
+                if (question && question.id) {
+                    const updatedQuestion = await updateQuestion({ ...question, exam_id: examData.id });
+                    updatedQuestions.push(updatedQuestion);
                 } else {
-                    await createQuestion({ ...question, exam_id: savedExam.id });  // Create new question
+                    const newQuestion = await createQuestion({ ...question, exam_id: examData.id });
+                    updatedQuestions.push(newQuestion);
                 }
             }
-            
+
+            /// Delete questions that are no longer in questionData
+            // const currentQuestionIds = questions.map(q => q.id).filter(Boolean);
+            // const updatedQuestionIds = updatedQuestions.map(q => q.id);
+            // const questionsToDelete = currentQuestionIds.filter(id => !updatedQuestionIds.includes(id));
+
+            // for (const questionId of questionsToDelete) {
+            //     if (questionId) {
+            //       await deleteQuestion(questionId);
+            //     }
+            //   }        
+
+            setQuestionData(updatedQuestions);
+
             setShowToast(true)
             // alert('Exam Data Saved Successfully!');
             console.log('Exam successfully saved:', examData);
-            console.log('Exam successfully saved:', examToSave);
+            console.log('Exam successfully saved:', questions);
         } catch (error) {
             console.error('Error saving exam:', error);
             alert('Failed to save exam. Please try again.');
@@ -249,13 +245,13 @@ const AddExam = ({ examId }) => {
 
     };
 
-    useEffect( () => {
+    useEffect(() => {
         if (showToast) {
-           const timer = setTimeout(() => {
-            setShowToast(false);
-           }, 5000)
-           
-           return () => clearTimeout(timer)
+            const timer = setTimeout(() => {
+                setShowToast(false);
+            }, 5000)
+
+            return () => clearTimeout(timer)
         }
     }, [showToast])
 
@@ -381,7 +377,7 @@ const AddExam = ({ examId }) => {
                     <div className='exam-from mb-2'>
                         <h6 className='text-capitalize'>Questions</h6>
                         <ExamForm
-                            selectedCourseId={examData.id}
+                            examId={examData.id}
                             onQuestionsUpdate={handleQuestionsUpdate}
                             initialQuestions={questionData}
                         />

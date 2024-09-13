@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useQuestions } from '../exams/useQuestions';
+import { useQuestionsExamId } from '../exams/useQuestions';
 import { RiUploadCloud2Line } from "react-icons/ri";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { TfiTrash } from "react-icons/tfi";
-import { useExams } from '../exams/useExams';
 
 function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
-    const { questions, isLoading, error } = useQuestions(examId);
+    const { questions, isLoading, error } = useQuestionsExamId(examId);
 
     const [questionData, setQuestionData] = useState([{
         exam_id: examId || '',
@@ -27,7 +26,7 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
         if (questions && questions.length > 0) {
             setQuestionData(questions.map(q => ({
                 ...q,
-                // exam_id: q.exam_id || '',
+                exam_id: q.exam_id || '',
                 title: q.title || '',
                 mark: q.mark || '',
                 questionType: q.questionType || '',
@@ -137,26 +136,6 @@ function ExamForm({examId, onQuestionsUpdate, initialQuestions,  }) {
 
     console.log(questionData)
     // console.log(questions)
-
-
-    // const [questionData, setQuestionData] = useState(() => 
-    //     initialQuestions && initialQuestions.length > 0
-    //         ? initialQuestions
-    //         : [{
-    //             exam_id: examId,
-    //             id: '',
-    //             title: '',
-    //             mark: '',
-    //             questionType: '',
-    //             image: null,
-    //             imageName: '',
-    //             correctOption: '',
-    //             falseOption: [''],
-    //             answer: '',
-    //             paragraph: '',
-    //         }]
-    // );
-
 
     // useEffect(() => {
     //     if (!isLoading && questions && questions.length > 0 && examId) {

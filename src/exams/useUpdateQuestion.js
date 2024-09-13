@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createUpdateExam } from "../services/apiExams";
+import { createUpdateQuestion } from "../services/apiQuestions";
 import { toast } from "react-hot-toast";
 
 export function useUpdateQuestion() {
   const queryClient = useQueryClient();
 
   const { mutate: updateQuestion, isLoading: isEditing } = useMutation({
-    mutationFn: ({ newQuestionData, id }) => createUpdateExam(newQuestionData, id),
+    mutationFn: ({ newQuestionData, id }) => createUpdateQuestion(newQuestionData, id),
     onSuccess: () => {
       toast.success("Question successfully edited");
       queryClient.invalidateQueries({ queryKey: ["questions"] });

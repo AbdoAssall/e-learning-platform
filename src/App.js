@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Exams />} />
           <Route path="/addcourse" element={<AddCourse />} />
           <Route path="/exams" element={<Exams />} />
-          <Route path="/addexam/:examId?" element={<AddExam />} />
+          <Route path="/addexam/" element={<AddExam />} />
           <Route path="/online-exam/:id" element={<OnlineExam />} />
           <Route path="/exam-result/:id" element={<ExamResult />} />
         </Routes>

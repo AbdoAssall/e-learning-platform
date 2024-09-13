@@ -21,7 +21,18 @@ function Exams() {
     if (exams && questions) {
       const currentDate = new Date();
 
-      const previous = exams.filter(exam => {
+      const validExams = exams.filter(exam => 
+        exam.course_id !== null &&
+        exam.courses !== null &&
+        exam.date !== null &&
+        exam.duration !== null &&
+        exam.fullMark !== null &&
+        exam.instructor !== null &&
+        exam.level !== null &&
+        exam.time !== null
+    );
+
+      const previous = validExams.filter(exam => {
         const examDate = new Date(exam.date);
         const hasScore = questions.some(q => q.exams && q.exams.id === exam.id && q.score !== null);
         return examDate < currentDate || hasScore;
@@ -35,7 +46,7 @@ function Exams() {
         }
       })
 
-      const upcoming = exams.filter(exam => {
+      const upcoming = validExams.filter(exam => {
         const examDate = new Date(exam.date);
         return examDate >= currentDate && !previous.some(prevExam => prevExam.id === exam.id);
       }).map(exam => ({

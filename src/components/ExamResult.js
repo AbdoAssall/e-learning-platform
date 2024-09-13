@@ -144,7 +144,7 @@ const ExamResult = () => {
                                                 <Progress.Circle percent={percent} showInfo={false} strokeColor={"var(--primary-color)"} trailColor={"#fff"} trailWidth={3} />
                                             </div>
                                             <div className="circle-text">
-                                                <span> {examResult.score} / {exam.fullMark} </span>
+                                                <span> {examResult.score.toString().padStart(2, ' ')} / {exam.fullMark} </span>
                                             </div>
                                         </div>
                                     </div>
